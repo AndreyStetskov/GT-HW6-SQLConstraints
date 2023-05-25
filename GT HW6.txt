@@ -1,0 +1,34 @@
+1. Опишите схему таблицу "расписание занятий"
+CREATE TABLE lessons (
+    lesson_id int PRIMARY KEY auto_increment,
+    created_at timestamp DEFAULT current_timestamp,
+    name varchar(64) NOT NULL,
+    link varchar(64) NOT NULL,
+    teacher_id
+);
+
+CREATE TABLE shedules (
+    shedule_id int PRIMARY KEY auto_increment,
+    created_at timestamp DEFAULT current_timestamp,
+    name varchar(64) NOT NULL,
+    date timestamp default NULL,
+    lesson_id,
+    group_id
+);
+
+2. Опишите схему таблицы "преподаватели"
+CREATE TABLE teachers (
+    teacher_id int PRIMARY KEY auto_increment,
+    created_at timestamp DEFAULT current_timestamp,
+    fullname varchar(64) NOT NULL,
+    academic degree varchar(32) NOT NULL
+);
+
+
+3. Вывести имена студентов и названия групп, в которых они состоят
+
+SELECT students.fullname,
+	ggroups.name
+From students_attachments
+JOIN students ON students_attachments.student_id = students.student_id
+join 'groups' on students_attachments.group_id = 'groups'.group_id
